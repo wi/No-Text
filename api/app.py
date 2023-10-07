@@ -9,6 +9,7 @@ lol = []
 
 @app.route("/add", methods=['POST'])
 def add():
+    print(request.headers)
     latex = request.headers.get("string", None)
     if not latex:
         return {"success": False}
@@ -26,4 +27,4 @@ def get():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5000)
+    app.run(debug=True, port=5001)
