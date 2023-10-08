@@ -4,7 +4,11 @@ import requests
 import subprocess
 from subprocess import check_call
 from sys import platform
-from win10toast import ToastNotifier
+try:
+    from win10toast import ToastNotifier
+except ImportError:
+    from dummy import ToastNotifier # MacOS cant use this
+        
 
 
 def notify():
@@ -21,12 +25,12 @@ def main():
     Blocking main function
     """
     while True:
-        req = requests.get("http://127.0.0.1:5000/get")
+        req = requests.get("http://127.0.0.1:5001/get")
         data = req.json()
         if not data.get("success", False):
             time.sleep(2) # 2 sec delay between scans
             continue
-
+        print(data)
         string = data.get("string", "")
         print(string)
 
@@ -50,5 +54,5 @@ def main():
 
 
 if __name__ == "__main__":
-    print("Client starting scan on http://127.0.0.1:5000/get")
+    print("Client starting scan on http://127.0.0.1:5001/get")
     main()
