@@ -4,6 +4,8 @@ import requests
 import subprocess
 from subprocess import check_call
 from sys import platform
+import pyperclip
+
 try:
     from win10toast import ToastNotifier
 except ImportError:
@@ -37,8 +39,7 @@ def main():
         # Mac OS
         if platform == "darwin":
             notify()
-            cmd='echo '+string.strip()+'|pbcopy'
-            check_call(cmd, shell=True)
+            pyperclip.copy(string)
 
         # Windows
         elif platform == "win32":

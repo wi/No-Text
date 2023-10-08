@@ -108,7 +108,7 @@ export default function App() {
         <ViewShot 
         style={{ flex: 1, backgroundImage: capturedImage  }}
         ref={imageRef}
-        options={{ result: "base64", format: "jpg", quality: 1, height: "80%",  }}
+        options={{ result: "base64", format: "jpg", quality: 1  }}
         >
           <ImageBackground 
             source={{ uri: capturedImage }} 
